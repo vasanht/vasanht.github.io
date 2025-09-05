@@ -61,15 +61,6 @@
                 scroll-snap-stop: always;
                 /* Safari-specific fixes */
                 -webkit-overflow-scrolling: touch;
-                scroll-snap-type: none;
-            }
-
-            /* Override scroll snap for photos section in Safari */
-            @supports (-webkit-touch-callout: none) {
-                .photos-snap-section {
-                    scroll-snap-align: none;
-                    scroll-snap-stop: normal;
-                }
             }
 
             .photos-snap-section::after {
