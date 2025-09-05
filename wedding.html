@@ -53,6 +53,24 @@
                 display: none;
             }
 
+            .photos-snap-section {
+                min-height: auto;
+                justify-content: flex-start;
+                padding-top: 2rem;
+            }
+
+            .photos-snap-section::after {
+                content: 'Swipe up ↓';
+                position: absolute;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                color: #95a5a6;
+                font-size: 0.8rem;
+                font-weight: 400;
+                animation: bounce 2s infinite;
+            }
+
             @keyframes bounce {
                 0%, 20%, 50%, 80%, 100% {
                     transform: translateX(-50%) translateY(0);
@@ -287,7 +305,7 @@
         </div>
         </div>
 
-        <div class="snap-section">
+        <div class="snap-section photos-snap-section">
             <h2>How We Look</h2>
         <div class="photos-section">
             <div class="photo-item">
