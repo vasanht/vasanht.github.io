@@ -19,6 +19,24 @@
             padding: 20px;
         }
 
+        /* Scroll snap for mobile */
+        @media (max-width: 768px) {
+            html {
+                scroll-behavior: smooth;
+                scroll-snap-type: y mandatory;
+            }
+
+            .snap-section {
+                scroll-snap-align: start;
+                scroll-snap-stop: always;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 2rem;
+            }
+        }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -199,15 +217,18 @@
 </head>
 <body>
     <div class="container">
-        <h1>Hey You!</h1>
-        
-        <div class="intro-text">
+        <div class="snap-section">
+            <h1>Hey You!</h1>
+            
+            <div class="intro-text">
             <p>Every day we share is special, but what will make December 1st truly unforgettable is celebrating it with you. Your presence as we begin our new journey together is the most precious gift we could ask for. We would be overjoyed to have you there to witness the start of our forever.</p>
             
             <p>So please, mark your calendars and book your travel! We hope you'll also take this opportunity to explore everything our historic city has to offer, from its magnificent temples and stunning Dravidian architecture to its world-famous, delicious cuisine (aka Parotta kadai). We can't wait to celebrate with you!</p>
+            </div>
         </div>
 
-        <h2>Event Details</h2>
+        <div class="snap-section">
+            <h2>Event Details</h2>
         <div class="event-details">
             <div class="event-item">
                 <h3>🎁 Reception</h3>
@@ -226,15 +247,19 @@
                 <p><a href="https://www.google.com/maps/place/KS+Punnavana+Nadar+Mahal,+Teppakulam/@9.9116009,78.1432559,17z/data=!3m1!4b1!4m6!3m5!1s0x3b00c50671660e65:0xe53c9b2847d8b436!8m2!3d9.9115956!4d78.1458308!16s%2Fg%2F1tg6hzyq?entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D" class="location-link" target="_blank">KS Punnavana Nadar Mahal, Teppakulam, Madurai</a></p>
             </div>
         </div>
+        </div>
 
-        <h2>How We Got Here</h2>
+        <div class="snap-section">
+            <h2>How We Got Here</h2>
         <div class="story-section">
             <p>"Classic senior pulled that junior move!" 😂</p>
             
             <p>Started as colleagues, then friends, then best friends, then to a point questioning "What are we?", then dating, and at a point we realised we were able to fight back to back and always patch things up. A prime requirement for marriage, and so we are getting married. 😂</p>
         </div>
+        </div>
 
-        <h2>How We Look</h2>
+        <div class="snap-section">
+            <h2>How We Look</h2>
         <div class="photos-section">
             <div class="photo-item">
                 <h3>As colleagues</h3>
@@ -291,9 +316,12 @@
                 </div>
             </div>
         </div>
+        </div>
 
-        <div class="conclusion">
-            <p><strong>Yes! We both definitely had a glow up and grow up together.</strong> ❤️</p>
+        <div class="snap-section">
+            <div class="conclusion">
+                <p><strong>Yes! We both definitely had a glow up and grow up together.</strong> ❤️</p>
+            </div>
         </div>
     </div>
 </body>
