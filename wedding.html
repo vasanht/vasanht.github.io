@@ -40,7 +40,7 @@
             .snap-section::after {
                 content: 'Swipe up ↓';
                 position: absolute;
-                bottom: 20px;
+                bottom: 40px;
                 left: 50%;
                 transform: translateX(-50%);
                 color: #95a5a6;
@@ -57,6 +57,8 @@
                 min-height: auto;
                 justify-content: flex-start;
                 padding-top: 2rem;
+                scroll-snap-align: none;
+                scroll-snap-stop: normal;
             }
 
             .photos-snap-section::after {
