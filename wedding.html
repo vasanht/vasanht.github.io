@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hey You! - Wedding Invitation</title>
+    <!-- tsparticles CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -116,6 +118,7 @@
             font-weight: 600;
             margin: 2.5rem 0 1.5rem 0;
             color: #34495e;
+            text-align: center;
         }
 
         h3 {
@@ -137,11 +140,11 @@
         }
 
         .event-details {
-            margin: 2rem 0;
+            margin: 2rem 0 1rem 0;
         }
 
         .event-item {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .event-item h3 {
@@ -168,7 +171,33 @@
         }
 
         .story-section {
-            margin: 2rem 0;
+            margin: 1rem 0 2rem 0;
+        }
+
+        .zoho-logo {
+            position: fixed;
+            bottom: 0px;
+            left: 80%;
+            transform: translateX(-50%) translateY(100px);
+            width: 220px;
+            height: auto;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10;
+            transition: all 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        .zoho-logo.revealed {
+            opacity: 0.6;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Desktop specific - medium size and centered */
+        @media (min-width: 769px) {
+            .zoho-logo {
+                width: 320px;
+                bottom: 0px;
+            }
         }
 
         .quote {
@@ -324,9 +353,23 @@
                 max-width: 100%;
             }
         }
+
+        /* Particles container */
+        #tsparticles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: transparent;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
+    <!-- Particles background -->
+    <div id="tsparticles"></div>
     
     <div class="container">
         <div class="snap-section">
@@ -343,19 +386,19 @@
             <h2>Event Details</h2>
         <div class="event-details">
             <div class="event-item">
-                <h3>🎁 Reception</h3>
+                <h3>Reception 🎁</h3>
                 <p><strong>Date:</strong> Sunday, November 30, 2025</p>
                 <p><strong>Time:</strong> 7:00 PM - 9:00 PM</p>
             </div>
 
             <div class="event-item">
-                <h3>💍 Wedding Ceremony</h3>
+                <h3>Wedding Ceremony 💍 </h3>
                 <p><strong>Date:</strong> Monday, December 1, 2025</p>
                 <p><strong>Time:</strong> 6:00 AM - 7:00 AM</p>
             </div>
 
             <div class="event-item">
-                <h3>📌 Location</h3>
+                <h3>Location 📌 </h3>
                 <p><a href="https://www.google.com/maps/place/KS+Punnavana+Nadar+Mahal,+Teppakulam/@9.9116009,78.1432559,17z/data=!3m1!4b1!4m6!3m5!1s0x3b00c50671660e65:0xe53c9b2847d8b436!8m2!3d9.9115956!4d78.1458308!16s%2Fg%2F1tg6hzyq?entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D" class="location-link" target="_blank">KS Punnavana Nadar Mahal, Teppakulam, Madurai</a></p>
                 
                 <div class="map-container" onclick="openGoogleMaps()">
@@ -373,10 +416,12 @@
 
         <div class="snap-section">
             <h2>How We Got Here</h2>
-        <div class="story-section">
+        <div class="story-section" id="how-we-got-here-section">
             <p>"Classic senior pulled that junior move!" 😂</p>
             
             <p>Started as colleagues, then friends, then best friends, then to a point questioning "What are we?", then loving, and at a point we realised we were able to fight back to back and always patch things up. A prime requirement for marriage, and so we are getting married. 😂</p>
+            
+            <img src="wedding/src/zoho.png" alt="Zoho" class="zoho-logo">
         </div>
         </div>
 
@@ -454,6 +499,125 @@
             const googleMapsUrl = "https://www.google.com/maps/place/KS+Punnavana+Nadar+Mahal,+Teppakulam/@9.9116009,78.1432559,17z/data=!3m1!4b1!4m6!3m5!1s0x3b00c50671660e65:0xe53c9b2847d8b436!8m2!3d9.9115956!4d78.1458308!16s%2Fg%2F1tg6hzyq?entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D";
             window.open(googleMapsUrl, '_blank');
         }
+
+        // Zoho logo reveal animation when "How We Got Here" section is in view
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.3
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const zohoLogo = document.querySelector('.zoho-logo');
+                if (entry.isIntersecting) {
+                    zohoLogo.classList.add('revealed');
+                } else {
+                    zohoLogo.classList.remove('revealed');
+                }
+            });
+        }, observerOptions);
+
+        // Start observing when page loads
+        window.addEventListener('load', () => {
+            const storySection = document.querySelector('#how-we-got-here-section');
+            if (storySection) {
+                observer.observe(storySection);
+            }
+        });
+
+        // tsparticles configuration with pink hearts
+        tsParticles.load("tsparticles", {
+            fullScreen: {
+                enable: false
+            },
+            particles: {
+                number: {
+                    value: 50,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: "#ff69b4"
+                },
+                shape: {
+                    type: "image",
+                    image: [
+                        {
+                            src: "data:image/svg+xml;base64," + btoa(`
+                                <svg viewBox="0 0 24 24" fill="#ff69b4" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5 C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/>
+                                </svg>
+                            `),
+                            width: 12,
+                            height: 12
+                        }
+                    ]
+                },
+                opacity: {
+                    value: 0.3,
+                    random: true,
+                    animation: {
+                        enable: true,
+                        speed: 0.5,
+                        minimumValue: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 8,
+                    random: {
+                        enable: true,
+                        minimumValue: 4
+                    },
+                    animation: {
+                        enable: true,
+                        speed: 2,
+                        minimumValue: 4,
+                        sync: false
+                    }
+                },
+                move: {
+                    enable: true,
+                    speed: 0.8,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    outModes: {
+                        default: "out"
+                    },
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                events: {
+                    onHover: {
+                        enable: true,
+                        mode: "bubble"
+                    },
+                    onClick: {
+                        enable: false
+                    },
+                    resize: true
+                },
+                modes: {
+                    bubble: {
+                        distance: 100,
+                        size: 12,
+                        duration: 2,
+                        opacity: 0.6,
+                        speed: 3
+                    }
+                }
+            },
+            detectRetina: true
+        });
     </script>
 </body>
 </html>
