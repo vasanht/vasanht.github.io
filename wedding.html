@@ -75,8 +75,8 @@
             min-height: 100vh;
             justify-content: flex-start;
             padding-top: 2rem;
-            scroll-snap-align: none;
-            scroll-snap-stop: normal;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
             /* Safari-specific fixes */
             -webkit-overflow-scrolling: touch;
         }
@@ -239,11 +239,13 @@
             text-align: center;
             scroll-snap-align: start;
             scroll-snap-stop: always;
-            min-height: 100vh;
+            min-height: 60vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
+            padding-top: 1rem;
         }
+
 
         .photo-item h3 {
             margin-bottom: 1rem;
@@ -264,6 +266,7 @@
             font-size: 0.9rem;
             text-align: center;
             padding: 1rem;
+            flex-shrink: 0;
         }
 
         .photo-placeholder img {
@@ -398,7 +401,7 @@
 
             /* Photo items mobile adjustments */
             .photo-item {
-                min-height: 90vh;
+                min-height: 50vh;
             }
         }
 
@@ -423,7 +426,7 @@
 
             /* Photo items small screen adjustments */
             .photo-item {
-                min-height: 85vh;
+                min-height: 45vh;
             }
         }
 
@@ -499,7 +502,7 @@
         </div>
 
         <div class="snap-section photos-snap-section">
-            <h2>How We Look</h2>
+            <h2 style="margin-bottom: 0;">How We Look</h2>
         <div class="photos-section">
             <div class="photo-item">
                 <h3>As colleagues</h3>
