@@ -4,6 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hey You! - Wedding Invitation</title>
+    
+    <!-- Open Graph meta tags for Safari thumbnails and social sharing -->
+    <meta property="og:title" content="Hey You! - Wedding Invitation">
+    <meta property="og:description" content="Join us for our special day! Vasanth & Janani's wedding celebration on December 1st, 2025 in Madurai.">
+    <meta property="og:image" content="wedding/src/image6.JPG">
+    <meta property="og:url" content="">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hey You! - Wedding Invitation">
+    <meta name="twitter:description" content="Join us for our special day! Vasanth & Janani's wedding celebration on December 1st, 2025 in Madurai.">
+    <meta name="twitter:image" content="wedding/src/image6.JPG">
+    
+    <!-- Additional meta tags for better thumbnail generation -->
+    <meta name="description" content="Join us for our special day! Vasanth & Janani's wedding celebration on December 1st, 2025 in Madurai.">
+    <meta name="image" content="wedding/src/image6.JPG">
     <!-- tsparticles CDN -->
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
     <style>
@@ -58,8 +75,8 @@
             min-height: 100vh;
             justify-content: flex-start;
             padding-top: 2rem;
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
+            scroll-snap-align: none;
+            scroll-snap-stop: normal;
             /* Safari-specific fixes */
             -webkit-overflow-scrolling: touch;
         }
@@ -212,9 +229,20 @@
             margin: 2rem 0;
         }
 
+        /* Last photo item gets extra padding at bottom */
+        .photo-item:last-child {
+            padding-bottom: 4rem;
+        }
+
         .photo-item {
-            margin-bottom: 2rem;
+            margin-bottom: 0;
             text-align: center;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .photo-item h3 {
@@ -274,6 +302,29 @@
             height: 300px;
             border: none;
             display: block;
+        }
+
+        /* Mobile-specific map adjustments */
+        @media (max-width: 768px) {
+            .embedded-map {
+                height: 250px;
+                max-height: 40vh; /* Ensure map doesn't exceed 40% of viewport height */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .embedded-map {
+                height: 200px;
+                max-height: 35vh; /* Further reduce on very narrow screens */
+            }
+        }
+
+        /* Android-specific adjustments for narrow screens */
+        @media (max-width: 360px) {
+            .embedded-map {
+                height: 180px;
+                max-height: 30vh; /* Keep map within viewport on very narrow Android screens */
+            }
         }
 
         .map-overlay {
@@ -338,6 +389,17 @@
             .photo-placeholder {
                 max-width: 100%;
             }
+
+            /* Map container mobile adjustments */
+            .map-container {
+                margin: 1rem 0;
+                border-radius: 8px;
+            }
+
+            /* Photo items mobile adjustments */
+            .photo-item {
+                min-height: 90vh;
+            }
         }
 
         @media (max-width: 480px) {
@@ -351,6 +413,17 @@
 
             .photo-placeholder {
                 max-width: 100%;
+            }
+
+            /* Map container adjustments for small screens */
+            .map-container {
+                margin: 0.8rem 0;
+                border-radius: 6px;
+            }
+
+            /* Photo items small screen adjustments */
+            .photo-item {
+                min-height: 85vh;
             }
         }
 
