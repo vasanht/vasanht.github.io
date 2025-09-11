@@ -246,6 +246,12 @@
             padding-top: 1rem;
         }
 
+        /* First photo item should not snap - let it flow naturally after heading */
+        .photo-item:first-child {
+            scroll-snap-align: none;
+            scroll-snap-stop: normal;
+        }
+
 
         .photo-item h3 {
             margin-bottom: 1rem;
